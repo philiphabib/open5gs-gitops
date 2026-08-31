@@ -21,6 +21,11 @@ open5gs:
 
     auth:
       enabled: false
+    image:
+      repository: bitnamilegacy/mongodb
+      tag: 4.4.1
+      pullPolicy: IfNotPresent
+
     persistence:
       storageClass: nfs-storage-retain
 
