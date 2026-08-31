@@ -28,6 +28,8 @@ open5gs:
 
     persistence:
       storageClass: nfs-storage-retain
+    volumePermissions:
+      enabled: true
 
   # ----------------------------------------------------------
   # 5G Core
