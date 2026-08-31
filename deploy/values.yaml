@@ -21,6 +21,8 @@ open5gs:
 
     auth:
       enabled: false
+    persistence:
+      storageClass: nfs-storage-retain
 
   # ----------------------------------------------------------
   # 5G Core
