@@ -1,6 +1,0 @@
-dependencies:
-- name: open5gs
-  repository: oci://registry-1.docker.io/gradiant
-  version: 2.2.0
-digest: sha256:f8c8d9087b695f1b153d3dd72beebe4e07bd062cdf029f2d16f30e76dbf6b733
-generated: "2026-08-31T09:20:49.551947245+03:00"
