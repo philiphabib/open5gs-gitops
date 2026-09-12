@@ -97,6 +97,11 @@ dependencies:
   name: open5gs-upf
   repository: file://../open5gs-upf
   version: ~2.3.2
+- alias: ims-upf
+  condition: ims-upf.enabled
+  name: open5gs-upf
+  repository: file://../open5gs-upf
+  version: ~2.3.2
 - alias: webui
   condition: webui.enabled
   name: open5gs-webui

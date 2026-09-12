@@ -18,15 +18,58 @@ mongodb:
   enabled: true
   auth:
     enabled: false
+  persistence:
+    storageClass: nfs-storage-retain
 smf:
   enabled: true
   config:
     pcrf:
       enabled: false
+
+    upf:
+      pfcp:
+        upfs:
+          - address: open5gs-upf-pfcp
+            dnn: internet
+          - address: open5gs-ims-upf-pfcp
+            dnn: ims
+
+    subnetList:
+      - subnet: 10.45.0.0/16
+        gateway: 10.45.0.1
+        dnn: internet
+
+      - subnet: 10.46.0.0/16
+        gateway: 10.46.0.1
+        dnn: ims
 upf:
   enabled: true
+  config:
+    subnetList:
+      - subnet: 10.45.0.0/16
+        gateway: 10.45.0.1
+        dnn: internet
+        dev: ogstun
+        mask: 16
+        createDev: true
+        enableNAT: true
+ims-upf:
+  enabled: true
+  config:
+    subnetList:
+      - subnet: 10.46.0.0/16
+        gateway: 10.46.0.1
+        dnn: ims
+        dev: ogstun
+        mask: 16
+        createDev: true
+        enableNAT: false
+
 webui:
   enabled: true
+  ingress:
+    enabled: true
+    hostname: open5gs.local
 
 # 4G
 hss:

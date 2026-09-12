@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ims-hss
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ims-hss
+  template:
+    metadata:
+      labels:
+        app: ims-hss
+    spec:
+      containers:
+        - name: hss
+          image: ghcr.io/kamailio/kamailio:6.0.7-trixie
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: diameter
+              containerPort: 3868
+              protocol: TCP
+          volumeMounts:
+            - name: config
+              mountPath: /etc/kamailio/kamailio.cfg
+              subPath: kamailio.cfg
+            - name: diameter
+              mountPath: /etc/kamailio/diametercfg.xml
+              subPath: diametercfg.xml
+      volumes:
+        - name: config
+          configMap:
+            name: ims-hss-config
+        - name: diameter
+          configMap:
+            name: ims-hss-diameter

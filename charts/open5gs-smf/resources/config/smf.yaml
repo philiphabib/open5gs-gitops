@@ -33,7 +33,16 @@ smf:
     - dev: eth0
     client:
       upf:
+      {{- if .Values.config.upf.pfcp.upfs }}
+      {{- range .Values.config.upf.pfcp.upfs }}
+      - address: {{ .address }}
+        {{- if .dnn }}
+        dnn: {{ .dnn }}
+        {{- end }}
+      {{- end }}
+      {{- else }}
       - address: {{ default (printf "%s-upf-pfcp" $open5gsName) .Values.config.upf.pfcp.hostname }}
+      {{- end }}
   gtpc:
     server:
     - dev: eth0
