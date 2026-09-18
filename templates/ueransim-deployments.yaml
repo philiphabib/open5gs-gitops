@@ -1,0 +1,110 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ueransim-gnb
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: ueransim-gnb
+  template:
+    metadata:
+      labels:
+        app: ueransim-gnb
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      nodeSelector:
+        kubernetes.io/hostname: k8s-worker1
+      containers:
+        - name: gnb
+          image: gradiant/ueransim:3.2.6
+          imagePullPolicy: IfNotPresent
+          command:
+            - nr-gnb
+          args:
+            - -c
+            - /etc/ueransim/gnb.yaml
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: config
+              mountPath: /etc/ueransim
+      volumes:
+        - name: config
+          configMap:
+            name: gnb-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ueransim-ue1
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: ueransim-ue1
+  template:
+    metadata:
+      labels:
+        app: ueransim-ue1
+    spec:
+      containers:
+        - name: ue
+          image: gradiant/ueransim:3.2.6
+          imagePullPolicy: IfNotPresent
+          command:
+            - nr-ue
+          args:
+            - -c
+            - /etc/ueransim/ue.yaml
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: config
+              mountPath: /etc/ueransim
+      volumes:
+        - name: config
+          configMap:
+            name: ue1-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ueransim-ue2
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: ueransim-ue2
+  template:
+    metadata:
+      labels:
+        app: ueransim-ue2
+    spec:
+      containers:
+        - name: ue
+          image: gradiant/ueransim:3.2.6
+          imagePullPolicy: IfNotPresent
+          command:
+            - nr-ue
+          args:
+            - -c
+            - /etc/ueransim/ue.yaml
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - NET_ADMIN
+          volumeMounts:
+            - name: config
+              mountPath: /etc/ueransim
+      volumes:
+        - name: config
+          configMap:
+            name: ue2-config
