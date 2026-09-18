@@ -114,6 +114,12 @@ data:
       IA2: true
       IA3: true
 
+    ciphering:
+      EA1: true
+      EA2: true
+      EA3: true
+
+
     integrityMaxRate:
       uplink: full
       downlink: full
