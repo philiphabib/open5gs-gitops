@@ -86,6 +86,18 @@ sgwu:
 # 5G
 amf:
   enabled: true
+  config:
+    plmnList:
+      - plmn_id:
+          mcc: "999"
+          mnc: "70"
+        s_nssai:
+          - sst: 1
+            sd: "0x111111"
+          - sst: 2
+            sd: "0x222222"
+          - sst: 3
+            sd: "0x333333"
 ausf:
   enabled: true
 bsf:
