@@ -67,8 +67,12 @@ ims-upf:
 
 webui:
   enabled: true
+  service:
+    type: NodePort
+    nodePort: 30999
+
   ingress:
-    enabled: true
+    enabled: false
     hostname: open5gs.local
 
 # 4G
