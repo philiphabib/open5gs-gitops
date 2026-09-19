@@ -20,7 +20,11 @@ data:
 
     slices:
       - sst: 1
-
+        sd: 0x111111
+      - sst: 2
+        sd: 0x222222
+      - sst: 3
+        sd: 0x333333
     ignoreStreamIds: true
 ---
 apiVersion: v1
@@ -48,7 +52,10 @@ data:
       - type: "IPv4"
         apn: "internet"
         slice:
-          sst: 1
+          - sst: 1
+            sd: 0x111111
+     
+          
 
     configured-nssai:
       - sst: 1
@@ -104,10 +111,12 @@ data:
       - type: "IPv4"
         apn: "ims"
         slice:
-          sst: 1
+          - sst: 2
+            sd: 0x222222
+    
 
     configured-nssai:
-      - sst: 1
+      - sst: 2
 
     integrity:
       IA1: true
