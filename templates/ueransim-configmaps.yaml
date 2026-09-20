@@ -52,8 +52,8 @@ data:
       - type: "IPv4"
         apn: "internet"
         slice:
-          - sst: 1
-            sd: 0x111111
+          sst: 1
+          sd: 0x111111
      
           
 
@@ -112,8 +112,8 @@ data:
       - type: "IPv4"
         apn: "ims"
         slice:
-          - sst: 2
-            sd: 0x222222
+          sst: 2
+          sd: 0x222222
     
 
     configured-nssai:
