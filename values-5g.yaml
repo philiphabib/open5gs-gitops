@@ -67,9 +67,11 @@ ims-upf:
 
 webui:
   enabled: true
-  service:
-    type: NodePort
-    nodePort: 30999
+  services:
+    http:
+      type: NodePort
+      nodePorts:
+        http: "30999"
 
   ingress:
     enabled: false
