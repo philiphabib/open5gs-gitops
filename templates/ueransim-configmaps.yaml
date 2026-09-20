@@ -59,6 +59,7 @@ data:
 
     configured-nssai:
       - sst: 1
+        sd: 0x111111
 
     integrity:
       IA1: true
@@ -117,6 +118,7 @@ data:
 
     configured-nssai:
       - sst: 2
+        sd: 0x222222
 
     integrity:
       IA1: true
